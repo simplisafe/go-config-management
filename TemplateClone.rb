@@ -47,6 +47,7 @@ class GoConfig
     request = Net::HTTP::Post.new(uriObj.path)
     request.basic_auth @user, @password
     request.set_form_data({'xmlFile' => @config, 'md5' => @configHash})
+    request['Confirm'] = "true"
     response = http.request(request)
     if response.code == "200" and response.body.include? "successfully"
       puts "Operation successfully completed!"
